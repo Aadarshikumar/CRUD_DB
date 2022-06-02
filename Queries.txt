@@ -1,0 +1,237 @@
+
+1. What is database? 
+ans => A database is a software that stores data in organized manner.
+So it become easy to manage the data.
+
+
+2. What is MySQL ?
+ans => Popular database software use to handle data in relational manner.
+
+
+----------------QUERIES-------------------
+
+
+command for open mysql
+* => mysql -u root -p
+password => Secret
+1. sudo mysql  
+1. show databases;
+2. create database [db_name];
+3. use [db_name];        => this go inside the name of data and now we can work.
+4. drop database [db_name];   => this delete the name of DB..
+
+1. create table students(
+    -> id int not null auto_increment, fname varchar(55), lname varchar(55),
+    -> age int, primary key(id)    );
+2. select * from student;    ==>> for showing the table...
+
+OR OR OR OR OR OR OR OR
+mysql> create table students
+    -> (
+    -> name varchar(55),
+    -> age int
+    -> );
+
+
+6. show tables;
+7. desc [tb_name];  => It goes inside  the particular in table;
+8. drop table [tb_name]; => it will delete the talbe with all the data's...
+
+9. alter table [old table_name] rename to [new];
+10. truncate table [table_name];  => it change the name of the table...
+11. insert into student(id,name,city) values(12,'aadi','delhi');
+ or or or
+12. insert into student values(13,'aadi','delhi');
+13. select * form [table_name];         => for showing the whole table in a manner...
+eg; student
+
+
+14. show warnings;    => it will show where we put the value wrong and from where warning comes...
+
+14. alter table [table_name] add col1;
+eg: alter table student add country varchar(50);
+
+*** => table name is (student)
+
+15. alter table student add country varchar(50);                       => for adding the option in a TABLE...
+16. update [table_name] set country='America' where id=13;                  => for changing the data of particular of the row...
+17. update [table_name] set city='delhi', country='Indonesia' where id=13;  => for changing more than 1 data's of the row...
+
+
+18. delete from [table_name] where id = 12;  => this delete one row from the table
+19. select * from student where city ='Bihar'; => this will show the whole data of the person who's city is (Bihar)...
+20. select name, city country from student where country='India'; this will the whole data of the person who's is belong from inida with their name, city, country...
+21. select country from student;     => this will show the all the country's name from the table data...
+22. select distinct(country) from student;    => this will show the the only UNIQUE country name...
+
+
+23. select * from student where country='Bihar' and city='Patna';   => this will show the data of student whose city and country will be match...
+24. select * from student where country='Bihar' or city='Indonesia';  => this will show any one them data...
+25. select * from student where id >= 11 and id <= 20; this will show the in range whose range we set in this....
+26. select * from student where id between 2 and 20;  => alternative of the serial no of 25.
+27. select * from student where id=13 or id=21 or id=24;    => select the data  only which we want...
+28. select * from student where id in(13,21,24);   => alternative of serial no of 27.
+29. select * from student limit 3;     => this will show 3 data's from the top the table...
+30. select * from student limit 2 offset 2;   => this will leave 2 data from top of table and after that it will select 2...
+
+
+31. select  * from student order by id desc;   => this will show the data in desending order by their id.....
+32. select  * from student order by name desc;   => this will show the data in desending order by their name...
+33. select * from student order by id desc limit 2;  => this will give the data from the bottom of the table...
+
+34. update student set name = 'Aadii Roy' where id=13;        => for updating your name or city, country, age...
+
+-----------LIKE OPERATOR-------------------
+
+35. select * from student where name like 'a%';   => this will give the all data of whose name start with (a)...
+36. select * from student where city like '_o%';   => this wil check the 2nd alphabet of the city and give the data....
+37. select * from student where country like '%i_';   => this will give the data of the country by checking last 2nd alphabet....
+
+
+----------FUNCTIONS----------------------
+38. select sum(id) from student;     => this will give the sum of all the id...
+39. select sum(id) as "Total Salary" from student;   
+40. select avg(id) from student;       =>  this will give the average of the id...
+41. select count(id) from student;     => this will count the total no. of id present in data...
+42. select min(id) from student;      => this will give the minimum id (value) of the data...
+43. select name from student where id = (select min(id) from student);   => this will give the name the student whose id is smallest...
+ --- or --- or --- or---- or ---- or ---- or---
+    select name from student where id = '13';
+
+44. select max(id) from student;   => finding maximum value of from the (id)..
+
+44. select char_length('aadarsh');   ==>> it will find the total length of the word...
+44. select upper('Aadarsh');    ==>> it will convert all the letter's into capital...
+
+
+--------------------FOREIGN KEY AND JOINS-----------------------------------
+45. create table laptops(1id int primary key, 1model varchar(200), studentId int , foreign key(studentId) references student(id));   => for creating table with (foreign key and joins)...
+46. show tables;   => this will show the new table...
+47. desc laptops;    => this will go inside the laptops data...
+48 select * from laptops;
+
+49. select student.name, student.city, laptops.1model from student , laptops where student.id = laptops.studentId;   => to join the two tables...
+
+50. select student.name, laptops.1model from student inner join laptops on student.id = laptops.studentId;  => this will also join the two tables...
+
+
+
+
+
+
+51. mysql> create table stunull
+-> (
+-> id int not null
+-> );                => this will help in to remove the NULL values from their place and then we can put values over their....
+
+52. insert into stunull (id) values (70);   =>> this will put the values instead of null values
+53. desc stunull;     => this will show the data of which you recently changed...
+54. mysql> create table studef
+    -> ( id int not null default 0,
+    -> name varchar(55) not null default 'un_named'
+    -> );                                 ==>>> we can give any default name and id 
+55. create table stud_auto  => this will generate automatically id no serial vise....
+56. select distinct age from students order by age;   => this will give the value in ascending order
+57. select concat('pradeep',' ', 'thakur');   ==>> for joining two things in a single...
+58. select concat(fname, ' ', lname) from students as fullname;
+59. select reverse('Aadarsh');    => it will reverse the value...
+60. select concat ('thakur', reverse('thakur')) as palindrome;      =>> this will make the the word palindrome...
+61. mysql> insert into datestu values ('pradeep','1994-1-05' , 
+    -> '05:05:05', '1994-1-05 05:05:05');              ==>> this will put the the date time in it...
+62. mysql> insert into datestu values ('pradeep', curdate(),
+    -> curtime(), now() );                         ==>> this give the current date and time of a student
+  
+
+
+
+
+
+
+///// --------------MEW VIDEO NEW VIDEO--------------------------------
+
+
+
+
+
+////  CREATE-----READ------UPDATE------ DELETE-------
+/*
+#### first of all create a table.
+## CREATE
+1. create table students(
+    -> id int not null auto_increment, fname varchar(55), lname varchar(55),
+    -> age int, primary key(id)    );
+
+
+#### put the values in it.
+2. insert into students (fname, lname, age) values ('Aadarsh', 'kumar', 22),
+    -> ('vikas', 'kumar', 19), ('ujjwal', 'kashyap', 20), ('rajesh', 'anuragi', 26),('pradeep', 'thakur', 30);
+
+#### READ
+3. select * from students where age >=19 and age <= 22;
+or or or 
+4. select fname from students where age >=19 and age <= 22;
+
+### UPDATE
+5. update students set age = 50, lname = 'Yo Yo' , fname='Vikas' where fname='vikas';
+
+#### DELETE
+/// before deleting we have to check that the data is present or not...
+6. select * from students where fname = 'rajesh';
+
+//// now we can delete the data.
+7. delete from students where fname= 'rajesh';k
+
+this operation is done...
+
+*/
+
+
+
+// ----------------FOREIGN KEY----FOREIGN KEY-----FOREIGN KEY----------------------------------------------------------------
+
+## how to connect foreign key.
+# first of all create new table for customers.
+
+1. create table customers (cid int not null auto_increment primary key, cname varchar(55), email varchar(100) );
+
+# create another table for foreign key(for matching)
+2. create table orders (oid int not null auto_increment primary key, orderdate date, cid int, foreign key(cid) references customers(cid) );
+
+#insert data in customers table.
+3. insert into customers (cid,cname,email) values (1,'vinod', 'vinod@thapa.com'),(2, 'Aadarsh', 'aadasrh@.com');
+
+# insert data in orders table;;;
+4. insert into orders(oid, orderdate, amount, cid) values (1, '2019/05/05',55,1), (2,'2019/08/06', 85, 2), (3, '2019/08/05', 155, 1), (4, '2019/05/12', 95, 3);
+
+# now
+5. select * from customers;
+
+### now it's time to connect 2 tables data's...
+6. select * from customers, orders where customers.cid = orders.cid;
+OR OR OR ORO OR OR ORO OR OR OR OR OR OR OR 
+
+7. mysql> select * from customers
+    -> join orders
+    -> on customers.cid = orders.cid;
+
+8. mysql> select cname, orderdate, amount from customers
+    -> join orders
+    -> on customers.cid = orders.cid;               ==>> only when we know that amount of a person...
+
+## inner join
+mysql> select cname, orderdate, amount, customers.cid from customers
+    -> join orders
+    -> on customers.cid = orders.cid;             ==>> by this we also know the id of the customers...
+
+## left join   ==>> it will show the common data of both tables and also show all the data's first table
+ 9. mysql> select * from customers left join orders
+    -> on customers.cid = orders.cid;
+
+
+## right join   ==>> opposite of LEFT JOIN
+10. select * from customers right join orders on customers.cid = orders.cid;
+
+
+
+
+

@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.16",
+    "readline-sync": "^1.4.10"
+  },
+  "name": "my_sql",
+  "version": "1.0.0",
+  "main": "DB_practice.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon DB_practice.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
